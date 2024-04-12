@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hotel.App">
+    <Application.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#907B7A"></Setter>
+            <Setter Property="TextColor" Value="White"></Setter>
+            <Setter Property="CornerRadius" Value="15"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="AuthRegLabel">
+            <Setter Property="TextColor" Value="White"></Setter>
+            <Setter Property="FontSize" Value="Medium"></Setter>
+            <Setter Property="Margin" Value="15, 0"></Setter>
+        </Style>
+        <Style TargetType="Label" x:Key="TitleLabel">
+            <Setter Property="HorizontalOptions" Value="Center"></Setter>
+            <Setter Property="TextColor" Value="White"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"></Setter>
+            <Setter Property="FontSize" Value="36"></Setter>
+            <!--<Setter Property="Margin" Value="30"></Setter>-->
+        </Style>
+    </Application.Resources>
+</Application>

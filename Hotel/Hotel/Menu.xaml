@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:Hotel"
+             x:Class="Hotel.Menu"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            NavigationPage.HasNavigationBar="False"
+            BackgroundColor="White">
+    <NavigationPage IconImageSource="myReservation.png">
+        <x:Arguments>
+            <local:MyReservation/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage IconImageSource="search.png">
+        <x:Arguments>
+            <local:RoomsSearch/>
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage IconImageSource="profile.png">
+        <x:Arguments>
+            <local:Profile/>
+        </x:Arguments>
+    </NavigationPage>
+</TabbedPage>

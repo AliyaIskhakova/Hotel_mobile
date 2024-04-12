@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hotel.Profile"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#210E0D">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label  Style="{StaticResource TitleLabel}" Margin="10" >Личный кабинет</Label>
+            <Frame CornerRadius="20" Margin="20, 0">
+                <StackLayout>
+                    <Label>Фамилия</Label>
+                    <Entry></Entry>
+                    <Label>Имя</Label>
+                    <Entry></Entry>
+                    <Label>Отчество</Label>
+                    <Entry></Entry>
+                    <Label>Дата рождения</Label>
+                    <Entry></Entry>
+                    <StackLayout Orientation="Horizontal">
+                        <Label>Пол</Label>
+                        <RadioButton></RadioButton>
+                        <RadioButton></RadioButton>
+                    </StackLayout>
+                    <Label>Телефон</Label>
+                    <Entry></Entry>
+                    <Label>Почта</Label>
+                    <Entry></Entry>
+                    <Label>Паспорт</Label>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                        <Label>Серия</Label>
+                        <Entry></Entry>
+                        <Label>Номер</Label>
+                        <Entry></Entry>
+                    </StackLayout>
+                    <Button Text="Сохранить"></Button>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

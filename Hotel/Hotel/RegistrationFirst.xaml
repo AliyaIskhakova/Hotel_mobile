@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hotel.RegistrationFirst"
+             BackgroundColor="#210E0D"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center" Margin="25">
+            <Label Text="РЕГИСТРАЦИЯ" Style="{StaticResource TitleLabel}" Margin="15"  />
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Логин</Label>
+            <Editor BackgroundColor="White" Margin="0, 5, 0, 15"></Editor>
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Пароль</Label>
+            <Editor  BackgroundColor="White" Margin="0, 5, 0, 15"></Editor>
+            <Button Text="Далее" Clicked="Button_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hotel.RegistrationSecond"
+             BackgroundColor="#210E0D"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Margin="25">
+            <Label Text="Личные данные" Style="{StaticResource TitleLabel}"  />
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Фамилия</Label>
+            <Editor BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Имя</Label>
+            <Editor  BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Отчество</Label>
+            <Editor BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label VerticalOptions="Center" FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Пол</Label>
+                <RadioButton TextColor="White" Grid.Column="1" Content="Ж"></RadioButton>
+                <RadioButton TextColor="White" Grid.Column="2" Content="М"></RadioButton>
+            </Grid>
+
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Телефон</Label>
+            <Editor  BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Дата рождения</Label>
+            <DatePicker  BackgroundColor="White" Margin="0, 5, 0, 10"></DatePicker>
+            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Почта</Label>
+            <Editor  BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
+            <Button Text="Зарегистрироваться" Clicked="Button_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
