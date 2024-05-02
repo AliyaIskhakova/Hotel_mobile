@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hotel.ConfirmReservation"
+             BackgroundColor="#210E0D"
+             NavigationPage.HasNavigationBar="False">
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <Frame Padding="0" Margin="10" CornerRadius="10">
+            <StackLayout>
+                <Frame BackgroundColor="Wheat">
+                    <Label Text="Информация"/>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Дата заезда"/>
+                            <Label x:Name="checkInDate" ></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Дата выезда"/>
+                            <Label x:Name="checkOutDate" ></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="Гостей"></Label>
+                            <Label Text="PeopleCount"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Label Text="Ночей"></Label>
+                            <Label x:Name="HightCount"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Label x:Name="RoomName">Номер</Label>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label HorizontalOptions="FillAndExpand" x:Name="Area"></Label>
+                            <Label HorizontalOptions="FillAndExpand" x:Name="RoomQuantity"></Label>
+                            <Label HorizontalOptions="FillAndExpand" x:Name="PeopleQuantity"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <Label x:Name="TariffName"></Label>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label HorizontalOptions="FillAndExpand" x:Name="Food"></Label>
+                            <Label HorizontalOptions="FillAndExpand" x:Name="Gym"></Label>
+                            <Label HorizontalOptions="FillAndExpand" x:Name="Transfer"></Label>
+                            <Label HorizontalOptions="FillAndExpand" x:Name="Wifi"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <Label HorizontalOptions="CenterAndExpand" x:Name="Cost"></Label>
+                </Frame>
+            </StackLayout>
+        </Frame>
+        <Button x:Name="SaveReservationBtn" Clicked="SaveReservationBtn_Clicked" HorizontalOptions="CenterAndExpand" Text="Подтвердить"></Button>
+    </StackLayout>
+</ContentPage>

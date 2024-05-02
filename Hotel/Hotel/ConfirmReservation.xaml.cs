@@ -10,11 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace Hotel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditMyReservation : ContentPage
+    public partial class ConfirmReservation : ContentPage
     {
-        public EditMyReservation()
+        public ConfirmReservation(DateTime checkIn, DateTime checkOut, int peopleCount, RoomInfo roomInfo, TariffInfo tariffInfo)
         {
             InitializeComponent();
+        }
+
+        private void SaveReservationBtn_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

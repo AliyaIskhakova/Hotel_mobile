@@ -6,7 +6,10 @@
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
             NavigationPage.HasNavigationBar="False"
-            BackgroundColor="White">
+            BackgroundColor="White"
+            android:TabbedPage.BarItemColor="#907B7A"
+            android:TabbedPage.BarSelectedItemColor="Black">
+            
     <NavigationPage IconImageSource="myReservation.png">
         <x:Arguments>
             <local:MyReservation/>

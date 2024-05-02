@@ -10,18 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Hotel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegistrationSecond : ContentPage
+    public partial class ForgotPassword : ContentPage
     {
-        public RegistrationSecond()
+        public ForgotPassword()
         {
             InitializeComponent();
-        }
-
-        private async void Button_Clicked(object sender, EventArgs e)
-        {
-           
-            await Navigation.PushAsync(new Menu());
-
         }
     }
 }

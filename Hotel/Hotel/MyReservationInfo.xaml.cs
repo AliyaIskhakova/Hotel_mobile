@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Hotel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RoomCArd : ViewCell
+    public partial class MyReservationInfo : ContentPage
     {
-        public RoomCArd()
+        public MyReservationInfo()
         {
             InitializeComponent();
         }

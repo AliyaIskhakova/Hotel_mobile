@@ -1,12 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hotel.RoomsList">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             BackgroundColor="#210E0D"
+             x:Class="Hotel.RoomsList"
+             NavigationPage.HasNavigationBar="False">
+    <ScrollView>
+        <StackLayout >
+            <ListView x:Name="roomsList"
+          HasUnevenRows="True"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                    <Frame CornerRadius="10" Margin="15" Padding="0" BackgroundColor="White" >
+                                        <StackLayout>
+                                            <Image x:Name="RoomImg" Source="{Binding Img}"></Image>
+                                            <Frame>
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label FontAttributes="Bold" Text="Номер " ></Label>
+                                                        <Label FontAttributes="Bold" Text="{Binding RoomID}" ></Label>
+                                                    </StackLayout>
+                                                    <Label Text ="{Binding Summary}"/>
+                                                    <StackLayout Orientation="Horizontal" >
+                                                        <Label VerticalOptions="Center">от</Label>
+                                                        <Label VerticalOptions="Center" Text="{Binding Cost}"></Label>
+                                                        <Label VerticalOptions="Center" >руб</Label>
+                                                        <Button x:Name="SelectBtn" Clicked="SelectBtn_Clicked" HorizontalOptions="EndAndExpand" Text="Выбрать"></Button>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

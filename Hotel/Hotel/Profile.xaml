@@ -5,37 +5,40 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#210E0D">
     <ContentPage.Content>
-        <StackLayout>
-            <Label  Style="{StaticResource TitleLabel}" Margin="10" >Личный кабинет</Label>
-            <Frame CornerRadius="20" Margin="20, 0">
-                <StackLayout>
-                    <Label>Фамилия</Label>
-                    <Entry></Entry>
-                    <Label>Имя</Label>
-                    <Entry></Entry>
-                    <Label>Отчество</Label>
-                    <Entry></Entry>
-                    <Label>Дата рождения</Label>
-                    <Entry></Entry>
-                    <StackLayout Orientation="Horizontal">
-                        <Label>Пол</Label>
-                        <RadioButton></RadioButton>
-                        <RadioButton></RadioButton>
+        <ScrollView>
+            <StackLayout>
+                <Label  Style="{StaticResource TitleLabel}" Margin="10" >Личный кабинет</Label>
+                <Frame CornerRadius="20" Margin="20, 0">
+                    <StackLayout>
+                        <Label>Фамилия</Label>
+                        <Entry x:Name="Surname"></Entry>
+                        <Label>Имя</Label>
+                        <Entry x:Name="Name"></Entry>
+                        <Label>Отчество</Label>
+                        <Entry x:Name="Patronymic"></Entry>
+                        <Label>Дата рождения</Label>
+                        <DatePicker x:Name="Birthday"></DatePicker>
+                        <StackLayout Orientation="Horizontal">
+                            <Label>Пол</Label>
+                            <RadioButton GroupName="Gender" x:Name="women" Content="Ж" Value="1"></RadioButton>
+                            <RadioButton GroupName="Gender" x:Name="men" Content="М" Value="0"></RadioButton>
+                        </StackLayout>
+                        <Label>Телефон</Label>
+                        <Entry x:Name="Telephone"></Entry>
+                        <Label>Почта</Label>
+                        <Entry x:Name="Email"></Entry>
+                        <Label>Паспорт</Label>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">Серия</Label>
+                            <Entry VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" x:Name="Seria"></Entry>
+                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">Номер</Label>
+                            <Entry VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" x:Name="NumberPas"></Entry>
+                        </StackLayout>
+                        <Button x:Name="SaveBtn" Clicked="SaveBtn_Clicked" Text="Сохранить"></Button>
                     </StackLayout>
-                    <Label>Телефон</Label>
-                    <Entry></Entry>
-                    <Label>Почта</Label>
-                    <Entry></Entry>
-                    <Label>Паспорт</Label>
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                        <Label>Серия</Label>
-                        <Entry></Entry>
-                        <Label>Номер</Label>
-                        <Entry></Entry>
-                    </StackLayout>
-                    <Button Text="Сохранить"></Button>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
+                </Frame>
+                <Button Margin="20, 5" x:Name="ExitBtn" Text="Выйти" Clicked="ExitBtn_Clicked"></Button>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

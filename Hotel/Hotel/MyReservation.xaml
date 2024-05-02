@@ -1,8 +1,63 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hotel.MyReservation">
+             x:Class="Hotel.MyReservation"
+             BackgroundColor="#210E0D">
     <ContentPage.Content>
-        <StackLayout></StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <Label>Актуальные бронирования</Label>
+                    <ListView x:Name="actualReservList" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout>
+                                            <Frame CornerRadius="10" Margin="15" Padding="0" BackgroundColor="White" >
+                                                <StackLayout>
+                                                    <StackLayout BackgroundColor="Wheat" Orientation="Horizontal">
+                                                        <Label Text="{Binding CheckInDate}"></Label>
+                                                        <Label Text=" - "></Label>
+                                                        <Label Text="{Binding CheckOutDate}"></Label>
+                                                    </StackLayout>
+                                                    <Label Text="{Binding FullCost}"></Label>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <StackLayout>
+                    <Label>Прошлые бронирования</Label>
+                    <ListView x:Name="lastReservList" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout>
+                                            <Frame CornerRadius="10" Margin="15" Padding="0" BackgroundColor="White" >
+                                                <StackLayout>
+                                                    <StackLayout BackgroundColor="Wheat" Orientation="Horizontal">
+                                                        <Label Text="{Binding CheckInDate}"></Label>
+                                                        <Label Text=" - "></Label>
+                                                        <Label Text="{Binding CheckOutDate}"></Label>
+                                                    </StackLayout>
+                                                    <Label Text="{Binding FullCost}"></Label>
+                                                </StackLayout>
+                                            </Frame>
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        
     </ContentPage.Content>
 </ContentPage>
