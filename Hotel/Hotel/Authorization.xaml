@@ -5,11 +5,6 @@
              BackgroundColor="#210E0D"
              NavigationPage.HasNavigationBar ="False">
     <ContentPage.Resources>
-        <Style TargetType="Button" x:Key="BtnType2">
-            <Setter Property="BackgroundColor" Value="#210E0D"></Setter>
-            <Setter Property="TextColor" Value="White"></Setter>
-            <Setter Property="Margin" Value="10, 0"></Setter>
-        </Style>
         <Style TargetType="Frame">
             <Setter Property="Margin" Value="10, 5"></Setter>
             <Setter Property="Padding" Value="7, 0"></Setter>
@@ -19,17 +14,17 @@
     <StackLayout VerticalOptions="Center" >
         <Image HorizontalOptions="Center" HeightRequest="100" Source="logo.png"/>
         <Label Margin="0, 0, 0, 15" Style="{StaticResource TitleLabel}" >Авторизация</Label>
-        <Label Style="{StaticResource AuthRegLabel}" >Логин</Label>
+        <Label Style="{StaticResource LabelMedium}" >Логин</Label>
         <Frame>
             <Entry x:Name="Login"></Entry>
         </Frame>
-        <Label Style="{StaticResource AuthRegLabel}" >Пароль</Label>
+        <Label Style="{StaticResource LabelMedium}" >Пароль</Label>
         <Frame>
             <Entry x:Name="Password" IsPassword="True" ></Entry>
         </Frame>
         <Button Margin="10, 10 , 10, 5" x:Name="SignInBtn" Text="Войти" Clicked="SignInBtn_ClickedAsync"></Button>
         <StackLayout Orientation="Horizontal">
-            <Button Style="{StaticResource BtnType2}" HorizontalOptions="StartAndExpand" Text="Забыли пароль ?"></Button>
+            <Button Style="{StaticResource BtnType2}" HorizontalOptions="StartAndExpand" Text="Забыли пароль ?" x:Name="ForgotPasswordBtn" Clicked="ForgotPasswordBtn_Clicked"></Button>
             <Button Style="{StaticResource BtnType2}" x:Name="RegictrationBtn" HorizontalOptions="EndAndExpand" Text="Зарегистрироваться" Clicked="Button_Clicked"/>
         </StackLayout>
     </StackLayout>

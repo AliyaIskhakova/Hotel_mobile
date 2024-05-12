@@ -2,21 +2,16 @@
 <resources>
 
   <style name="MainTheme" parent="MainTheme.Base">
-    <!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->
-    <!-- If you want to override anything you can do that here. -->
-    <!-- Underneath are a couple of entries to get you started. -->
-
-    <!-- Set theme colors from https://aka.ms/material-colors -->
-    <!-- colorPrimary is used for the default action bar background -->
     <item name="colorPrimary">#ffffff</item>
-    <!-- colorPrimaryDark is used for the status bar -->
     <item name="colorPrimaryDark">#210E0D</item>
-    <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
     <item name="colorAccent">#EECFAF</item>
   <item name="android:colorActivatedHighlight" >#EECFAF</item >
-                <!-- <item name="android:windowBackground">@drawable/intro</item> -->
+	  <item name="android:datePickerDialogTheme">@style/CustomDatePickerDialog</item>
+ <item name="android:windowBackground">@drawable/intro</item>
 
   </style>
-         
+	<style name="CustomDatePickerDialog" parent="ThemeOverlay.AppCompat.Dialog">
+		<item name="colorAccent">#907B7A</item>
+		<item name="android:windowBackground">#ffffff</item>
+	</style>
 </resources>

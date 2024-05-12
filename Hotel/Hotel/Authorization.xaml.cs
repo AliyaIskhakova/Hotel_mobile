@@ -29,9 +29,9 @@ namespace Hotel
         {
             try
             {
-                if (!string.IsNullOrEmpty(Login.Text.Trim()) && !string.IsNullOrEmpty(Login.Text.Trim()))
+                if (!string.IsNullOrEmpty(Login.Text.Trim()) && !string.IsNullOrEmpty(Password.Text.Trim()))
                 {
-                    string sql = $"SELECT ClientID FROM Client WHERE Client.Login={Login.Text} and Client.Password={Password.Text}";
+                    string sql = $"SELECT ClientID FROM Client WHERE Login='{Login.Text}' and Password='{Password.Text}'";
                     MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
@@ -49,8 +49,13 @@ namespace Hotel
             }
             catch 
             {
-                await DisplayAlert("Ошибка", "Произошла ошибка! Попробуйте еще раз", "OK");
+                await DisplayAlert("Ошибка", "Проверьте данные для входа", "OK");
             }
+        }
+
+        private async void ForgotPasswordBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ForgotPassword());
         }
     }
 }

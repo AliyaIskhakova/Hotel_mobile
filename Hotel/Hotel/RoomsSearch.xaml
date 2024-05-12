@@ -28,7 +28,7 @@
                 </StackLayout>
                 <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
                     <Label>Гостей</Label>
-                    <Editor x:Name="PeopleCount" Keyboard="Numeric"></Editor>
+                    <Editor x:Name="PeopleCount" Keyboard="Numeric" MaxLength="1"></Editor>
                 </StackLayout>
                 <Button Text="Найти" Grid.Row="2" Grid.ColumnSpan="2" x:Name="SearchBtn" Clicked="SearchBtn_Clicked" ></Button>
             </Grid>

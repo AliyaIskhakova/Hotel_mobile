@@ -2,35 +2,65 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hotel.RegistrationSecond"
+             xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
              BackgroundColor="#210E0D"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="Frame">
+            <Setter Property="Margin" Value="10, 5"></Setter>
+            <Setter Property="Padding" Value="7, 0"></Setter>
+            <Setter Property="CornerRadius" Value="15"></Setter>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" Margin="25">
+        <StackLayout VerticalOptions="Center">
             <Label Text="Личные данные" Style="{StaticResource TitleLabel}"  />
-            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Фамилия</Label>
-            <Editor BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
-            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Имя</Label>
-            <Editor  BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
-            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Отчество</Label>
-            <Editor BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
+            <Label Style="{StaticResource LabelMedium}" >Фамилия</Label>
+            <Frame>
+                <Entry x:Name="Surname" MaxLength="50"></Entry>
+            </Frame>
+            <Label Style="{StaticResource LabelMedium}">Имя</Label>
+            <Frame>
+                <Entry x:Name="Name" MaxLength="50"></Entry>
+            </Frame>
+            <Label Style="{StaticResource LabelMedium}">Отчество</Label>
+            <Frame>
+                <Entry x:Name="Patronymic" MaxLength="50" ></Entry>
+            </Frame>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition Width="0.4*"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Label VerticalOptions="Center" FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Пол</Label>
-                <RadioButton TextColor="White" Grid.Column="1" Content="Ж"></RadioButton>
+                <Label VerticalOptions="Center" Style="{StaticResource LabelMedium}">Пол</Label>
+                <RadioButton IsChecked="True" x:Name="women" TextColor="White" Grid.Column="1" Content="Ж"></RadioButton>
                 <RadioButton TextColor="White" Grid.Column="2" Content="М"></RadioButton>
             </Grid>
 
-            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Телефон</Label>
-            <Editor  BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
-            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Дата рождения</Label>
-            <DatePicker  BackgroundColor="White" Margin="0, 5, 0, 10"></DatePicker>
-            <Label FontSize="Medium" TextColor="White" Margin="5, 0, 0, 0">Почта</Label>
-            <Editor  BackgroundColor="White" Margin="0, 5, 0, 10"></Editor>
-            <Button Text="Зарегистрироваться" Clicked="Button_Clicked"/>
+            <Label Style="{StaticResource LabelMedium}">Телефон</Label>
+            <Frame>
+                <control:MaskedEntry x:Name="Telephone" Keyboard="Telephone" Mask="7 (XXX)-XXX-XX-XX"></control:MaskedEntry>
+            </Frame>
+            <Label Style="{StaticResource LabelMedium}">Дата рождения</Label>
+            <Frame>
+                <DatePicker x:Name="Birthday" ></DatePicker>
+            </Frame>
+            <Label Style="{StaticResource LabelMedium}">Почта</Label>
+            <Frame>
+                <Entry MaxLength="50" x:Name="Email" Keyboard="Email"></Entry>
+            </Frame>
+            <StackLayout Orientation="Horizontal" >
+                <Label Style="{StaticResource LabelMedium}" VerticalOptions="CenterAndExpand" >Серия</Label>
+                <Frame>
+                    <Entry Keyboard="Numeric" x:Name="Seria" MaxLength="4" WidthRequest="50"></Entry>
+                </Frame>
+                <Label Style="{StaticResource LabelMedium}" VerticalOptions="CenterAndExpand" >Номер</Label>
+                <Frame>
+                    <Entry Keyboard="Numeric" MaxLength="6" x:Name="NumberPas" WidthRequest="70"></Entry>
+                </Frame>
+            </StackLayout>
+            <Button Margin="10" Text="Зарегистрироваться" Clicked="Button_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

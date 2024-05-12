@@ -1,12 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Hotel.MyReservationInfo">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="Hotel.MyReservationInfo"        
+             BackgroundColor="#210E0D"
+          NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Body"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="Margin" Value="0, 2"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LadelValue">
+            <Setter Property="FontSize" Value="Body"></Setter>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="Margin" Value="0, 2"/>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="Padding" Value="20, 10"/>
+        </Style>
+    </ContentPage.Resources>
+    <StackLayout VerticalOptions="CenterAndExpand">
+        <Frame Padding="0" Margin="10" CornerRadius="10">
+            <StackLayout x:Name="MyReservInfo">
+                <Frame BackgroundColor="Wheat">
+                    <Label Text="Информация" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"/>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Дата заезда: "/>
+                            <DatePicker x:Name="checkIn" DateSelected="checkIn_DateSelected" ></DatePicker>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Дата выезда: "/>
+                            <DatePicker x:Name="checkOut" DateSelected="checkOut_DateSelected" ></DatePicker>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout Orientation="Horizontal">
+                         <Label Text="Дата бронирования: "></Label>
+                         <Label Style="{StaticResource LadelValue}" Text="{Binding ReservationDate}"></Label>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label x:Name="RoomName">Номер</Label>
+                            <Label Text="{Binding RoomID}" ></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal" >
+                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="Area"></Label>
+                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="RoomQuantity"></Label>
+                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="PeopleQuantity"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label>Тариф:</Label>
+                            <Label Style="{StaticResource LadelValue}" x:Name="TariffName"></Label>
+                        </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="Food" Grid.Row="0" Grid.Column="0" Style="{StaticResource LadelValue}"></Label>
+                            <Label x:Name="Gym" Grid.Row="0" Grid.Column="1" Style="{StaticResource LadelValue}"></Label>
+                            <Label x:Name="Transfer" Grid.Row="1" Grid.Column="0" Style="{StaticResource LadelValue}"></Label>
+                            <Label x:Name="Wifi" Grid.Row="1" Grid.Column="1" Style="{StaticResource LadelValue}"></Label>
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <Frame>
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Label>Итоговая стоимость</Label>
+                        <Label x:Name="ReservCost" Text="{Binding FullCost}"></Label>
+                        <Label>руб</Label>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Frame>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Button x:Name="EditReservationBtn" Clicked="EditReservationBtn_Clicked" Text="Изменить даты" Margin="0, 0, 25, 0" ></Button>
+            <Button x:Name="DeleteReservationBtn" Clicked="DeleteReservationBtn_Clicked" Text="Отменить" WidthRequest="140"></Button>
+    
         </StackLayout>
-    </ContentPage.Content>
+    </StackLayout>
 </ContentPage>

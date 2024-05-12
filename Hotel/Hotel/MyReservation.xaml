@@ -2,62 +2,98 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hotel.MyReservation"
-             BackgroundColor="#210E0D">
+             BackgroundColor="#210E0D"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="Margin" Value="0, 10"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LabelType2">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="TextColor" Value="#210E0D"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <StackLayout>
-                    <Label>Актуальные бронирования</Label>
-                    <ListView x:Name="actualReservList" HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.View>
-                                        <StackLayout>
-                                            <Frame CornerRadius="10" Margin="15" Padding="0" BackgroundColor="White" >
-                                                <StackLayout>
-                                                    <StackLayout BackgroundColor="Wheat" Orientation="Horizontal">
-                                                        <Label Text="{Binding CheckInDate}"></Label>
-                                                        <Label Text=" - "></Label>
-                                                        <Label Text="{Binding CheckOutDate}"></Label>
-                                                    </StackLayout>
-                                                    <Label Text="{Binding FullCost}"></Label>
-                                                </StackLayout>
-                                            </Frame>
-                                        </StackLayout>
-                                    </ViewCell.View>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-                <StackLayout>
-                    <Label>Прошлые бронирования</Label>
-                    <ListView x:Name="lastReservList" HasUnevenRows="True">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <ViewCell.View>
-                                        <StackLayout>
-                                            <Frame CornerRadius="10" Margin="15" Padding="0" BackgroundColor="White" >
-                                                <StackLayout>
-                                                    <StackLayout BackgroundColor="Wheat" Orientation="Horizontal">
-                                                        <Label Text="{Binding CheckInDate}"></Label>
-                                                        <Label Text=" - "></Label>
-                                                        <Label Text="{Binding CheckOutDate}"></Label>
-                                                    </StackLayout>
-                                                    <Label Text="{Binding FullCost}"></Label>
-                                                </StackLayout>
-                                            </Frame>
-                                        </StackLayout>
-                                    </ViewCell.View>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
+        <StackLayout>
+            <Label Style="{StaticResource TitleLabel}" Text="Мои бронирования"/>
+            <StackLayout VerticalOptions="Start"  Orientation="Horizontal">
+                <Button x:Name="ActualReservBtn" Style="{StaticResource BtnType3}" BackgroundColor="#907B7A" Clicked="ActualReservBtn_Clicked" Text="Актуальные"></Button>
+                <Button x:Name="LastReservBtn" Style="{StaticResource BtnType3}" Text="Прошлые" Clicked="LastReservBtn_Clicked"></Button>
             </StackLayout>
-        </ScrollView>
-        
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout x:Name="actualReserv">
+                        <ListView x:Name="actualReservList" HasUnevenRows="True" ItemTapped="actualReservList_ItemTapped" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <StackLayout>
+                                                <Frame CornerRadius="10" Margin="15, 7" Padding="0" BackgroundColor="White" >
+                                                    <StackLayout BackgroundColor="Wheat">
+                                                        <Image Source="{Binding Img}"></Image>
+                                                        <StackLayout HorizontalOptions="Center" BackgroundColor="Wheat" Orientation="Horizontal">
+                                                            <Label Text="{Binding CheckInDate}"></Label>
+                                                            <Label  Text="—"></Label>
+                                                            <Label Text="{Binding CheckOutDate}"></Label>
+                                                        </StackLayout>
+                                                        <Frame Padding="15" >
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Style="{StaticResource LabelType2}" Margin="7, 0" HorizontalOptions="Start">Номер</Label>
+                                                                <Label Style="{StaticResource LabelType2}" HorizontalOptions="StartAndExpand" Text="{Binding RoomID}"></Label>
+                                                                <Label Style="{StaticResource LabelType2}">Стоимость:</Label>
+                                                                <Label Style="{StaticResource LabelType2}" Text="{Binding FullCost}"></Label>
+                                                                <Label Style="{StaticResource LabelType2}" >руб</Label>
+                                                            </StackLayout>
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </StackLayout>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <StackLayout IsVisible="False" x:Name="lastReserv">
+                        <ListView x:Name="lastReservList" HasUnevenRows="True" ItemTapped="lastReservList_ItemTapped">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <ViewCell.View>
+                                            <StackLayout>
+                                                <Frame CornerRadius="10" Margin="15,7" Padding="0" BackgroundColor="White" >
+                                                    <StackLayout BackgroundColor="Wheat">
+                                                        <Image Source="{Binding Img}"></Image>
+                                                        <StackLayout HorizontalOptions="Center" BackgroundColor="Wheat" Orientation="Horizontal">
+                                                            <Label Text="{Binding CheckInDate}"></Label>
+                                                            <Label  Text="—"></Label>
+                                                            <Label Text="{Binding CheckOutDate}"></Label>
+                                                        </StackLayout>
+                                                        <Frame Padding="15" >
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Style="{StaticResource LabelType2}" Margin="7, 0" HorizontalOptions="Start">Номер</Label>
+                                                                <Label Style="{StaticResource LabelType2}" HorizontalOptions="StartAndExpand" Text="{Binding RoomID}"></Label>
+                                                                <Label Style="{StaticResource LabelType2}">Стоимость:</Label>
+                                                                <Label Style="{StaticResource LabelType2}" Text="{Binding FullCost}"></Label>
+                                                                <Label Style="{StaticResource LabelType2}" >руб</Label>
+                                                            </StackLayout>
+                                                        </Frame>
+                                                    </StackLayout>
+                                                </Frame>
+                                            </StackLayout>
+                                        </ViewCell.View>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

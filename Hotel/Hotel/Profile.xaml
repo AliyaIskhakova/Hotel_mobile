@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hotel.Profile"
+             xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#210E0D">
     <ContentPage.Content>
@@ -11,11 +12,11 @@
                 <Frame CornerRadius="20" Margin="20, 0">
                     <StackLayout>
                         <Label>Фамилия</Label>
-                        <Entry x:Name="Surname"></Entry>
+                        <Entry x:Name="Surname" MaxLength="50"></Entry>
                         <Label>Имя</Label>
-                        <Entry x:Name="Name"></Entry>
+                        <Entry x:Name="Name" MaxLength="50"></Entry>
                         <Label>Отчество</Label>
-                        <Entry x:Name="Patronymic"></Entry>
+                        <Entry x:Name="Patronymic" MaxLength="50"></Entry>
                         <Label>Дата рождения</Label>
                         <DatePicker x:Name="Birthday"></DatePicker>
                         <StackLayout Orientation="Horizontal">
@@ -24,15 +25,15 @@
                             <RadioButton GroupName="Gender" x:Name="men" Content="М" Value="0"></RadioButton>
                         </StackLayout>
                         <Label>Телефон</Label>
-                        <Entry x:Name="Telephone"></Entry>
+                        <control:MaskedEntry x:Name="Telephone" Keyboard="Telephone" Mask="7 (XXX)-XXX-XX-XX"></control:MaskedEntry>
                         <Label>Почта</Label>
-                        <Entry x:Name="Email"></Entry>
+                        <Entry x:Name="Email" Keyboard="Email" MaxLength="50"></Entry>
                         <Label>Паспорт</Label>
                         <StackLayout Orientation="Horizontal" >
-                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">Серия</Label>
-                            <Entry VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" x:Name="Seria"></Entry>
-                            <Label VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">Номер</Label>
-                            <Entry VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" x:Name="NumberPas"></Entry>
+                            <Label VerticalOptions="CenterAndExpand" >Серия</Label>
+                            <Entry x:Name="Seria" WidthRequest="50" Keyboard="Numeric" MaxLength="4"></Entry>
+                            <Label VerticalOptions="CenterAndExpand" >Номер</Label>
+                            <Entry x:Name="NumberPas" WidthRequest="70" Keyboard="Numeric" MaxLength="6"></Entry>
                         </StackLayout>
                         <Button x:Name="SaveBtn" Clicked="SaveBtn_Clicked" Text="Сохранить"></Button>
                     </StackLayout>

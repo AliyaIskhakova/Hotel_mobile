@@ -19,7 +19,12 @@ namespace Hotel
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RegistrationSecond());
+            if (!string.IsNullOrEmpty(login.Text.Trim()) && !string.IsNullOrEmpty(password.Text.Trim()))
+            {
+                RegistrationSecond registrationSecond = new RegistrationSecond(login.Text, password.Text);
+                await Navigation.PushAsync(registrationSecond);
+            }
+            else await DisplayAlert("Ошибка", "Введите все данные!", "OK");
         }
     }
 }

@@ -8,7 +8,7 @@
             <Setter Property="TextColor" Value="White"></Setter>
             <Setter Property="CornerRadius" Value="15"></Setter>
         </Style>
-        <Style TargetType="Label" x:Key="AuthRegLabel">
+        <Style TargetType="Label" x:Key="LabelMedium">
             <Setter Property="TextColor" Value="White"></Setter>
             <Setter Property="FontSize" Value="Medium"></Setter>
             <Setter Property="Margin" Value="15, 0"></Setter>
@@ -18,7 +18,17 @@
             <Setter Property="TextColor" Value="White"></Setter>
             <Setter Property="FontAttributes" Value="Bold"></Setter>
             <Setter Property="FontSize" Value="36"></Setter>
-            <!--<Setter Property="Margin" Value="30"></Setter>-->
+        </Style>
+        <Style TargetType="Button" x:Key="BtnType2">
+            <Setter Property="BackgroundColor" Value="#210E0D"></Setter>
+            <Setter Property="TextColor" Value="White"></Setter>
+            <Setter Property="Margin" Value="10, 0"></Setter>
+        </Style>
+        <Style TargetType="Button" x:Key="BtnType3">
+            <Setter Property="BackgroundColor" Value="#210E0D"></Setter>
+            <Setter Property="TextColor" Value="White"></Setter>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="CornerRadius" Value="0"/>
         </Style>
     </Application.Resources>
 </Application>

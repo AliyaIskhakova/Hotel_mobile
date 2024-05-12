@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZstdSharp.Unsafe;
 
 namespace Hotel
 {
@@ -15,6 +16,10 @@ namespace Hotel
         public RoomsSearch()
         {
             InitializeComponent();
+            CheckIn.MinimumDate = DateTime.Now.AddDays(1);
+            CheckIn.MaximumDate = DateTime.Now.AddYears(1);
+            CheckOut.MinimumDate = DateTime.Now.AddDays(2);
+            CheckOut.MaximumDate = DateTime.Now.AddYears(2).AddDays(1);
             ((App)Application.Current).connection.Close();
             ((App)Application.Current).connection.Open();
         }

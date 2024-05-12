@@ -26,6 +26,8 @@ namespace Hotel
             InitializeComponent();
             ((App)Application.Current).connection.Close();
             ((App)Application.Current).connection.Open();
+            TimeSpan difference = checkOut.Subtract(checkIn);
+            int numberOfDays = difference.Days;
             _checkIn = checkIn;
             _checkOut = checkOut;
             _peopleCount = peopleCount;
@@ -45,23 +47,27 @@ namespace Hotel
                 TariffInfo item = new TariffInfo();
                 item.TariffID = (int)reader[0];
                 item.Name = (string)reader[1];
-               if ((bool)reader[3])
-              {
-                  item.Food = "Питание";
-              }
+                if ((bool)reader[3])
+                {
+                    item.Food = "• Питание";
+                }
+                else item.Food = "• Без питания";
                 if ((bool)reader[4])
                 {
-                    item.Gym = "Спорт";
+                    item.Gym = "• Спортивный зал";
                 }
+                else item.Gym = "• Без спорт зала";
                 if ((bool)reader[5])
                 {
-                    item.Transfer = "Трансфер";
+                    item.Transfer = "• Трансфер";
                 }
+                else item.Transfer = "• Без трансфера";
                 if ((bool)reader[6])
                 {
-                    item.Wifi = "Wi-Fi";
+                    item.Wifi = "• Wi-Fi";
                 }
-                item.Cost = (int)reader[7] + roomInfo.Cost;
+                else item.Wifi = "• Без интернета";
+                item.Cost = ((int)reader[7] + roomInfo.Cost)*numberOfDays;
                 Tariffs.Add(item);
             }
             tariffList.ItemsSource = Tariffs;

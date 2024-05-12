@@ -4,6 +4,14 @@
              BackgroundColor="#210E0D"
              x:Class="Hotel.RoomsList"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="LabelName">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout >
             <ListView x:Name="roomsList"
@@ -14,21 +22,21 @@
                         <ViewCell>
                             <ViewCell.View>
                                 <StackLayout>
-                                    <Frame CornerRadius="10" Margin="15" Padding="0" BackgroundColor="White" >
+                                    <Frame CornerRadius="10" Margin="15, 7" Padding="0" BackgroundColor="White" >
                                         <StackLayout>
                                             <Image x:Name="RoomImg" Source="{Binding Img}"></Image>
-                                            <Frame>
+                                            <Frame Padding="20, 15, 20, 20">
                                                 <StackLayout>
                                                     <StackLayout Orientation="Horizontal">
-                                                        <Label FontAttributes="Bold" Text="Номер " ></Label>
-                                                        <Label FontAttributes="Bold" Text="{Binding RoomID}" ></Label>
+                                                        <Label Style="{StaticResource LabelName}"  Text="Номер " ></Label>
+                                                        <Label Style="{StaticResource LabelName}"  Text="{Binding RoomID}" ></Label>
                                                     </StackLayout>
-                                                    <Label Text ="{Binding Summary}"/>
-                                                    <StackLayout Orientation="Horizontal" >
-                                                        <Label VerticalOptions="Center">от</Label>
-                                                        <Label VerticalOptions="Center" Text="{Binding Cost}"></Label>
-                                                        <Label VerticalOptions="Center" >руб</Label>
-                                                        <Button x:Name="SelectBtn" Clicked="SelectBtn_Clicked" HorizontalOptions="EndAndExpand" Text="Выбрать"></Button>
+                                                    <Label Margin="0, 8" TextColor="#383837" Text ="{Binding Summary}"/>
+                                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" >
+                                                        <Label Style="{StaticResource LabelName}" >от</Label>
+                                                        <Label Style="{StaticResource LabelName}" Text="{Binding Cost}"></Label>
+                                                        <Label Style="{StaticResource LabelName}">руб</Label>
+                                                        <Button x:Name="SelectBtn" Clicked="SelectBtn_Clicked" HeightRequest="35" WidthRequest="140" HorizontalOptions="EndAndExpand" Text="Выбрать"></Button>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </Frame>

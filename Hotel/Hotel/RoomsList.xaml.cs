@@ -27,14 +27,16 @@ namespace Hotel
             GenerateRooms(checkIn, checkOut, peopleCount);
             
          }
-        public void GenerateRooms(DateTime checkIn, DateTime checkOut, int peopleCount)
-        {
+        public async void GenerateRooms(DateTime checkIn, DateTime checkOut, int peopleCount)
+        {          
             List<RoomInfo> Rooms = new List<RoomInfo>();
             string sql = $"SELECT * FROM Room r WHERE r.PeopleQuantity >= {peopleCount} AND NOT EXISTS " +
-                $"(SELECT 1 FROM Reservation b WHERE b.RoomID = r.RoomID AND {checkIn.ToString("yyyy-MM-dd")} <= b.CheckOutDate AND {checkOut.ToString("yyyy-MM-dd")} >= b.CheckiInDate)";
+                $"(SELECT 1 FROM Reservation b WHERE b.RoomID = r.RoomID AND '{checkIn.ToString("yyyy-MM-dd")}' <= b.CheckOutDate " +
+                $"AND '{checkOut.ToString("yyyy-MM-dd")}' >= b.CheckiInDate)";
             MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
             MySqlDataReader reader = command.ExecuteReader();
-            
+            if (reader.HasRows)
+            {
                 while (reader.Read())
                 {
                     RoomInfo item = new RoomInfo();
@@ -48,8 +50,16 @@ namespace Hotel
                     item.Cost = (int)reader[5];
                     Rooms.Add(item);
                 }
-                roomsList.ItemsSource = Rooms;   
-            reader.Close();
+                roomsList.ItemsSource = Rooms;
+                reader.Close();
+            }
+            else
+            {
+                await DisplayAlert("Поиск", "Номеров на эти даты нет", "Оk");
+                await Navigation.PopToRootAsync();
+                reader.Close();
+            }
+            
         }
         private async void SelectBtn_Clicked(object sender, EventArgs e)
         {

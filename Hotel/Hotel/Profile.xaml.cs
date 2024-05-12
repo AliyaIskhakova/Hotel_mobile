@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -36,8 +37,13 @@ namespace Hotel
                 else men.IsChecked = true;
                 Telephone.Text = (string)reader[6];
                 Email.Text = (string)reader[7];
-                Seria.Text = ((int)reader[8]).ToString();
-                NumberPas.Text = ((int)reader[9]).ToString();
+                try {
+                    Seria.Text = ((int)reader[8]).ToString();
+                    NumberPas.Text = ((int)reader[9]).ToString();
+                }
+                catch { 
+                
+                }
             }
             reader.Close();
 
@@ -47,10 +53,13 @@ namespace Hotel
         {
             Preferences.Clear();
             App.Current.MainPage = new NavigationPage(new Autorization());
+            ((App)Application.Current).connection.Close();
+            ((App)Application.Current).connection.Open();
             await Navigation.PushAsync(new Autorization());
+
         }
 
-        private void SaveBtn_Clicked(object sender, EventArgs e)
+        private async void SaveBtn_Clicked(object sender, EventArgs e)
         {
             bool gender;
             if( women.IsChecked == true )
@@ -58,11 +67,13 @@ namespace Hotel
                 gender = true;
             }
             else gender = false;
+            string telephone = Regex.Replace(Telephone.Text, "[^0-9#]", "");
             string sql = $"UPDATE Client SET Surname = '{Surname.Text}', Name = '{Name.Text}', Patronymic = '{Patronymic.Text}', Birthday = '{Birthday.Date.ToString("yyyy-MM-dd")}'," +
-                $"Gender = {gender}, PhoneNumber = '{Telephone.Text}', Email = '{Email.Text}', PassportSeries = {Seria.Text}, PassportNumber = {NumberPas.Text} WHERE (ClientID = {_UserId}) ";
+                $"Gender = {gender}, PhoneNumber = '{telephone}', Email = '{Email.Text}', PassportSeries = {Seria.Text}, PassportNumber = {NumberPas.Text} WHERE (ClientID = {_UserId}) ";
             MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
             MySqlDataReader reader = command.ExecuteReader();
             reader.Close();
+            await DisplayAlert("Профиль", "Данные успешно сохранены", "Ok");
 
         }
     }

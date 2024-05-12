@@ -17,7 +17,6 @@ namespace Hotel
         public Menu()
         {
             InitializeComponent();
-            //On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
     }
 }

@@ -3,27 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hotel.SelectedRoomInfo"
              BackgroundColor="#210E0D"
-             NavigationPage.HasNavigationBar="False"
-             >
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="Label" x:Key="LabelName">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LabelSummary">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+        </Style>
+        <Style TargetType="Label" x:Key="TariffSummary">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="TextColor" Value="#383837"/>
+        </Style>
+        <Style TargetType="Label" x:Key="TariffCost">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="TextColor" Value="#383837"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout  BackgroundColor="White" x:Name="RoomInfo">
             <Image x:Name="RoomImg" Source=""/>
             <Frame Margin="0" Padding="20, 10, 20, 10">
                 <StackLayout>
-                    <Label x:Name="RoomName" ></Label>
-                    <Label x:Name="RoomSummary" ></Label>
+                    <Label Style="{StaticResource LabelName}" x:Name="RoomName" ></Label>
+                    <Label TextColor="#383837" FontSize="16" Margin="0, 0, 0, 3" x:Name="RoomSummary" ></Label>
                     <StackLayout Orientation="Horizontal" >
-                        <Label HorizontalOptions="FillAndExpand" x:Name="Area"></Label>
-                        <Label HorizontalOptions="FillAndExpand" x:Name="RoomQuantity"></Label>
-                        <Label HorizontalOptions="FillAndExpand" x:Name="PeopleQuantity"></Label>
+                        <Label Style="{StaticResource LabelSummary}" x:Name="Area"></Label>
+                        <Label Style="{StaticResource LabelSummary}" x:Name="RoomQuantity"></Label>
+                        <Label Style="{StaticResource LabelSummary}" x:Name="PeopleQuantity"></Label>
                     </StackLayout>
                 </StackLayout>
-                
             </Frame>
             
             <StackLayout>
                 <Frame HasShadow="False" Padding="7">
-                    <Label  FontAttributes="Bold" FontSize="Medium" HorizontalTextAlignment="Center" Text="Тарифы"/>
+                    <Label Style="{StaticResource LabelName}" HorizontalTextAlignment="Center" Text="Тарифы"/>
                 </Frame>
                 <CollectionView BackgroundColor="#EECFAF" x:Name="tariffList" >
                         <CollectionView.ItemsLayout>
@@ -32,18 +53,18 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Frame WidthRequest="150" CornerRadius="10" Margin="15" Padding="12" BackgroundColor="White" >
+                                    <Frame WidthRequest="150" CornerRadius="10" Margin="7, 10" Padding="12" BackgroundColor="White" >
                                         <StackLayout>
-                                            <Label HorizontalOptions="Center" FontAttributes="Bold" FontSize="Medium" Text="{Binding Name}" ></Label>
-                                            <Label Text="{Binding Food}"></Label>
-                                            <Label Text="{Binding Gym}"></Label>
-                                            <Label Text="{Binding Transfer}"></Label>
-                                            <Label Text="{Binding Wifi}"></Label>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding Cost}"></Label>
-                                            <Label> руб</Label>
+                                        <Label HorizontalOptions="Center" Style="{StaticResource LabelName}" Text="{Binding Name}" ></Label>
+                                        <Label Style="{StaticResource TariffSummary}" Text="{Binding Food}"></Label>
+                                        <Label Style="{StaticResource TariffSummary}" Text="{Binding Gym}"></Label>
+                                        <Label Style="{StaticResource TariffSummary}" Text="{Binding Transfer}"></Label>
+                                        <Label Style="{StaticResource TariffSummary}" Text="{Binding Wifi}"></Label>
+                                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                                            <Label Style="{StaticResource TariffCost}" Text="{Binding Cost}"></Label>
+                                            <Label Style="{StaticResource TariffCost}"> руб</Label>
                                         </StackLayout>
-                                            <Button x:Name="SelectTarifBtn" Clicked="SelectTarifBtn_Clicked" Text="Выбрать"></Button>
+                                            <Button x:Name="SelectTarifBtn" Clicked="SelectTarifBtn_Clicked" HeightRequest="40" Text="Выбрать"></Button>
                                         </StackLayout>
                                     </Frame>
                                 </StackLayout>

@@ -4,33 +4,49 @@
              x:Class="Hotel.ConfirmReservation"
              BackgroundColor="#210E0D"
              NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="Body"></Setter>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="Margin" Value="0, 2"/>
+        </Style>
+        <Style TargetType="Label" x:Key="LadelValue">
+            <Setter Property="FontSize" Value="Body"></Setter>
+            <Setter Property="TextColor" Value="#383837"/>
+            <Setter Property="Margin" Value="0, 2"/>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="Padding" Value="20, 10"/>
+        </Style>
+    </ContentPage.Resources>
     <StackLayout VerticalOptions="CenterAndExpand">
         <Frame Padding="0" Margin="10" CornerRadius="10">
             <StackLayout>
                 <Frame BackgroundColor="Wheat">
-                    <Label Text="Информация"/>
+                    <Label Text="Информация" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"/>
                 </Frame>
                 <Frame>
                     <StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Дата заезда"/>
-                            <Label x:Name="checkInDate" ></Label>
+                            <Label Text="Дата заезда: "/>
+                            <Label Style="{StaticResource LadelValue}" x:Name="checkInDate" ></Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal">
-                            <Label Text="Дата выезда"/>
-                            <Label x:Name="checkOutDate" ></Label>
+                            <Label Text="Дата выезда: "/>
+                            <Label Style="{StaticResource LadelValue}" x:Name="checkOutDate" ></Label>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
                 <Frame>
                     <StackLayout Orientation="Horizontal">
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="Гостей"></Label>
-                            <Label Text="PeopleCount"></Label>
+                            <Label Text="Гостей: "></Label>
+                            <Label Style="{StaticResource LadelValue}" x:Name="PeopleCount"></Label>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                            <Label Text="Ночей"></Label>
-                            <Label x:Name="HightCount"></Label>
+                            <Label Text="Ночей: "></Label>
+                            <Label Style="{StaticResource LadelValue}" x:Name="HightCount"></Label>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
@@ -38,25 +54,40 @@
                     <StackLayout>
                         <Label x:Name="RoomName">Номер</Label>
                         <StackLayout Orientation="Horizontal" >
-                            <Label HorizontalOptions="FillAndExpand" x:Name="Area"></Label>
-                            <Label HorizontalOptions="FillAndExpand" x:Name="RoomQuantity"></Label>
-                            <Label HorizontalOptions="FillAndExpand" x:Name="PeopleQuantity"></Label>
+                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="Area"></Label>
+                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="RoomQuantity"></Label>
+                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="PeopleQuantity"></Label>
                         </StackLayout>
                     </StackLayout>
                 </Frame>
                 <Frame>
                     <StackLayout>
-                        <Label x:Name="TariffName"></Label>
-                        <StackLayout Orientation="Horizontal" >
-                            <Label HorizontalOptions="FillAndExpand" x:Name="Food"></Label>
-                            <Label HorizontalOptions="FillAndExpand" x:Name="Gym"></Label>
-                            <Label HorizontalOptions="FillAndExpand" x:Name="Transfer"></Label>
-                            <Label HorizontalOptions="FillAndExpand" x:Name="Wifi"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Label>Тариф: </Label>
+                            <Label Style="{StaticResource LadelValue}" x:Name="TariffName"></Label>
                         </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="Food" Grid.Row="0" Grid.Column="0" Style="{StaticResource LadelValue}"></Label>
+                            <Label x:Name="Gym" Grid.Row="0" Grid.Column="1" Style="{StaticResource LadelValue}"></Label>
+                            <Label x:Name="Transfer" Grid.Row="1" Grid.Column="0" Style="{StaticResource LadelValue}"></Label>
+                            <Label x:Name="Wifi" Grid.Row="1" Grid.Column="1" Style="{StaticResource LadelValue}"></Label>
+                        </Grid>
                     </StackLayout>
                 </Frame>
                 <Frame>
-                    <Label HorizontalOptions="CenterAndExpand" x:Name="Cost"></Label>
+                    <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
+                        <Label>Итоговая стоимость</Label>
+                        <Label x:Name="Cost"></Label>
+                        <Label> руб</Label>
+                    </StackLayout>
                 </Frame>
             </StackLayout>
         </Frame>

@@ -1,8 +1,6 @@
 ﻿using MySqlConnector;
-using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Hotel
 {
@@ -29,11 +27,9 @@ namespace Hotel
         protected override void OnStart()
         {
         }
-
         protected override void OnSleep()
         {
         }
-
         protected override void OnResume()
         {
         }
