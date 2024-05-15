@@ -53,7 +53,7 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Frame WidthRequest="150" CornerRadius="10" Margin="7, 10" Padding="12" BackgroundColor="White" >
+                                    <Frame VerticalOptions="CenterAndExpand" WidthRequest="150" CornerRadius="10" Margin="7, 10" Padding="12" BackgroundColor="White" >
                                         <StackLayout>
                                         <Label HorizontalOptions="Center" Style="{StaticResource LabelName}" Text="{Binding Name}" ></Label>
                                         <Label Style="{StaticResource TariffSummary}" Text="{Binding Food}"></Label>

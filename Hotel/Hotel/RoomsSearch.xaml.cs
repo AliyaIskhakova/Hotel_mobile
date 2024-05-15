@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ZstdSharp.Unsafe;
 
 namespace Hotel
 {
@@ -25,12 +19,27 @@ namespace Hotel
         }
         private async void SearchBtn_Clicked(object sender, EventArgs e)
         {
-            if (CheckIn.Date != null && CheckOut.Date != null && CheckIn.Date < CheckOut.Date && int.TryParse(PeopleCount.Text, out int peopleC) && peopleC >= 1)
+            try
             {
-                RoomsList roomsList = new RoomsList(CheckIn.Date, CheckOut.Date, peopleC);
-                await Navigation.PushAsync(roomsList);
+                if (CheckIn.Date != null && CheckOut.Date != null && !string.IsNullOrWhiteSpace(PeopleCount.Text))
+                {
+                    if (CheckIn.Date < CheckOut.Date)
+                    {
+                        if (int.TryParse(PeopleCount.Text, out int peopleC) && peopleC >= 1)
+                        {
+                            RoomsList roomsList = new RoomsList(CheckIn.Date, CheckOut.Date, peopleC);
+                            await Navigation.PushAsync(roomsList);
+                        }
+                        else await DisplayAlert("Ошибка", "Некорректные данные о количестве гостей!", "Оk");
+                    }
+                    else await DisplayAlert("Ошибка", "Некорректные даты!", "Оk");
+                }
+                else await DisplayAlert("Ошибка", "Введите все данные!", "Оk");
             }
-            else await DisplayAlert("Ошибка", "Введите ве данные!", "Оk");
+            catch
+            {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }
         }
     }
 }

@@ -5,6 +5,11 @@
              xmlns:control="clr-namespace:Xamarin.Forms.MaskedEntry;assembly=Xamarin.Forms.MaskedEntry"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#210E0D">
+    <ContentPage.Resources>
+        <Style TargetType="Entry">
+            <Setter Property="MaxLength" Value="40"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -12,22 +17,22 @@
                 <Frame CornerRadius="20" Margin="20, 0">
                     <StackLayout>
                         <Label>Фамилия</Label>
-                        <Entry x:Name="Surname" MaxLength="50"></Entry>
+                        <Entry x:Name="Surname" ></Entry>
                         <Label>Имя</Label>
-                        <Entry x:Name="Name" MaxLength="50"></Entry>
+                        <Entry x:Name="Name"></Entry>
                         <Label>Отчество</Label>
-                        <Entry x:Name="Patronymic" MaxLength="50"></Entry>
+                        <Entry x:Name="Patronymic" ></Entry>
                         <Label>Дата рождения</Label>
                         <DatePicker x:Name="Birthday"></DatePicker>
                         <StackLayout Orientation="Horizontal">
-                            <Label>Пол</Label>
+                            <Label VerticalTextAlignment="Center">Пол</Label>
                             <RadioButton GroupName="Gender" x:Name="women" Content="Ж" Value="1"></RadioButton>
                             <RadioButton GroupName="Gender" x:Name="men" Content="М" Value="0"></RadioButton>
                         </StackLayout>
                         <Label>Телефон</Label>
                         <control:MaskedEntry x:Name="Telephone" Keyboard="Telephone" Mask="7 (XXX)-XXX-XX-XX"></control:MaskedEntry>
                         <Label>Почта</Label>
-                        <Entry x:Name="Email" Keyboard="Email" MaxLength="50"></Entry>
+                        <Entry x:Name="Email" Keyboard="Email" ></Entry>
                         <Label>Паспорт</Label>
                         <StackLayout Orientation="Horizontal" >
                             <Label VerticalOptions="CenterAndExpand" >Серия</Label>

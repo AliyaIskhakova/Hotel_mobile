@@ -16,11 +16,11 @@
             <Label Text="РЕГИСТРАЦИЯ" Style="{StaticResource TitleLabel}" Margin="15"  />
             <Label Style="{StaticResource LabelMedium}" >Логин</Label>
             <Frame>
-                <Entry x:Name="login"></Entry>
+                <Entry x:Name="login" MaxLength="40"></Entry>
             </Frame>
             <Label Style="{StaticResource  LabelMedium}">Пароль</Label>
             <Frame>
-                <Entry x:Name="password"></Entry>
+                <Entry x:Name="password" MaxLength="40"></Entry>
             </Frame>
             <Button Margin="10" Text="Далее" Clicked="Button_Clicked"></Button>
         </StackLayout>

@@ -11,21 +11,24 @@
             <Setter Property="Padding" Value="7, 0"></Setter>
             <Setter Property="CornerRadius" Value="15"></Setter>
         </Style>
+        <Style TargetType="Entry">
+            <Setter Property="MaxLength" Value="40"/>
+        </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
             <Label Text="Личные данные" Style="{StaticResource TitleLabel}"  />
-            <Label Style="{StaticResource LabelMedium}" >Фамилия</Label>
+            <Label Style="{StaticResource LabelMedium}" >Фамилия*</Label>
             <Frame>
-                <Entry x:Name="Surname" MaxLength="50"></Entry>
+                <Entry x:Name="Surname" ></Entry>
             </Frame>
-            <Label Style="{StaticResource LabelMedium}">Имя</Label>
+            <Label Style="{StaticResource LabelMedium}">Имя*</Label>
             <Frame>
-                <Entry x:Name="Name" MaxLength="50"></Entry>
+                <Entry x:Name="Name" ></Entry>
             </Frame>
             <Label Style="{StaticResource LabelMedium}">Отчество</Label>
             <Frame>
-                <Entry x:Name="Patronymic" MaxLength="50" ></Entry>
+                <Entry x:Name="Patronymic" ></Entry>
             </Frame>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -38,24 +41,24 @@
                 <RadioButton TextColor="White" Grid.Column="2" Content="М"></RadioButton>
             </Grid>
 
-            <Label Style="{StaticResource LabelMedium}">Телефон</Label>
+            <Label Style="{StaticResource LabelMedium}">Телефон*</Label>
             <Frame>
                 <control:MaskedEntry x:Name="Telephone" Keyboard="Telephone" Mask="7 (XXX)-XXX-XX-XX"></control:MaskedEntry>
             </Frame>
-            <Label Style="{StaticResource LabelMedium}">Дата рождения</Label>
+            <Label Style="{StaticResource LabelMedium}">Дата рождения*</Label>
             <Frame>
                 <DatePicker x:Name="Birthday" ></DatePicker>
             </Frame>
-            <Label Style="{StaticResource LabelMedium}">Почта</Label>
+            <Label Style="{StaticResource LabelMedium}">Почта*</Label>
             <Frame>
                 <Entry MaxLength="50" x:Name="Email" Keyboard="Email"></Entry>
             </Frame>
             <StackLayout Orientation="Horizontal" >
-                <Label Style="{StaticResource LabelMedium}" VerticalOptions="CenterAndExpand" >Серия</Label>
+                <Label Style="{StaticResource LabelMedium}" VerticalOptions="CenterAndExpand" >Серия*</Label>
                 <Frame>
                     <Entry Keyboard="Numeric" x:Name="Seria" MaxLength="4" WidthRequest="50"></Entry>
                 </Frame>
-                <Label Style="{StaticResource LabelMedium}" VerticalOptions="CenterAndExpand" >Номер</Label>
+                <Label Style="{StaticResource LabelMedium}" VerticalOptions="CenterAndExpand" >Номер*</Label>
                 <Frame>
                     <Entry Keyboard="Numeric" MaxLength="6" x:Name="NumberPas" WidthRequest="70"></Entry>
                 </Frame>

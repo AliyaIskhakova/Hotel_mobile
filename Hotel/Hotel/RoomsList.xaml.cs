@@ -1,10 +1,6 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -55,7 +51,7 @@ namespace Hotel
             }
             else
             {
-                await DisplayAlert("Поиск", "Номеров на эти даты нет", "Оk");
+                await DisplayAlert("Поиск", "Номеров по данному запросу не найдено", "Оk");
                 await Navigation.PopToRootAsync();
                 reader.Close();
             }
@@ -63,11 +59,18 @@ namespace Hotel
         }
         private async void SelectBtn_Clicked(object sender, EventArgs e)
         {
-            Button button = sender as Button;
-            ViewCell viewCell = button.Parent.Parent.Parent.Parent.Parent.Parent.Parent as ViewCell;
-            RoomInfo room = (RoomInfo)viewCell.BindingContext;
-            SelectedRoomInfo selectedRoomInfo = new SelectedRoomInfo(_checkIn, _checkOut, _peopleCount, room);
-            await Navigation.PushAsync(selectedRoomInfo);
+            try
+            {
+                Button button = sender as Button;
+                ViewCell viewCell = button.Parent.Parent.Parent.Parent.Parent.Parent.Parent as ViewCell;
+                RoomInfo room = (RoomInfo)viewCell.BindingContext;
+                SelectedRoomInfo selectedRoomInfo = new SelectedRoomInfo(_checkIn, _checkOut, _peopleCount, room);
+                await Navigation.PushAsync(selectedRoomInfo);
+            }
+            catch
+            {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }
         }
     }
 }

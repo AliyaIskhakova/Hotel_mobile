@@ -1,15 +1,8 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using static Xamarin.Essentials.Permissions;
 
 namespace Hotel
 {
@@ -49,23 +42,29 @@ namespace Hotel
 
         private async void SaveReservationBtn_Clicked(object sender, EventArgs e)
         {
-            string sql = $"INSERT INTO reservation (ReservationDate, CheckiInDate, CheckOutDate, FullCost, ClientID, RoomID) " +
-                $"VALUES ('{DateTime.Now.ToString("yyyy-MM-dd")}', '{_checkIn.ToString("yyyy-MM-dd")}', '{_checkOut.ToString("yyyy-MM-dd")}', '{_Cost}', '{Preferences.Get("UserId",0)}', '{_RoomId}');";
-            MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            reader.Close();
-            sql = $"SELECT ReservationID FROM Reservation ORDER BY ReservationID DESC LIMIT 1;";
-            command = new MySqlCommand(sql, ((App)Application.Current).connection);
-            reader = command.ExecuteReader();
-            reader.Read();
-            int ReservationID = (int)reader[0];
-            reader.Close();
-            sql = $"INSERT INTO reservationtariff (`ReservationID`, `TariffID`) VALUES ('{ReservationID}', '{_TariffId}');";
-            command = new MySqlCommand(sql, ((App)Application.Current).connection);
-            reader = command.ExecuteReader();
-            reader.Close();
-            await Navigation.PushAsync(new Menu());
-            App.Current.MainPage = new NavigationPage(new Menu());
+            try
+            {
+                string sql = $"INSERT INTO reservation (ReservationDate, CheckiInDate, CheckOutDate, FullCost, ClientID, RoomID) " +
+                $"VALUES ('{DateTime.Now.ToString("yyyy-MM-dd")}', '{_checkIn.ToString("yyyy-MM-dd")}', '{_checkOut.ToString("yyyy-MM-dd")}', '{_Cost}', '{Preferences.Get("UserId", 0)}', '{_RoomId}');";
+                MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                MySqlDataReader reader = command.ExecuteReader();
+                reader.Close();
+                sql = $"SELECT ReservationID FROM Reservation ORDER BY ReservationID DESC LIMIT 1;";
+                command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                reader = command.ExecuteReader();
+                reader.Read();
+                int ReservationID = (int)reader[0];
+                reader.Close();
+                sql = $"INSERT INTO reservationtariff (`ReservationID`, `TariffID`) VALUES ('{ReservationID}', '{_TariffId}');";
+                command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                reader = command.ExecuteReader();
+                reader.Close();
+                await Navigation.PushAsync(new Menu());
+                App.Current.MainPage = new NavigationPage(new Menu());
+            }
+            catch {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }        
         }
     }
 }

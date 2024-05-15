@@ -1,10 +1,6 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,6 +17,8 @@ namespace Hotel
             _UserId = Preferences.Get("UserId", 0);
             ((App)Application.Current).connection.Close();
             ((App)Application.Current).connection.Open();
+            Birthday.MaximumDate = DateTime.Now.AddYears(-14);
+            Birthday.MinimumDate = DateTime.Today.AddYears(-100);
             string sql = $"SELECT * FROM Client WHERE ClientID = {_UserId} ";
             MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
             MySqlDataReader reader = command.ExecuteReader();
@@ -61,20 +59,37 @@ namespace Hotel
 
         private async void SaveBtn_Clicked(object sender, EventArgs e)
         {
-            bool gender;
-            if( women.IsChecked == true )
+            try
             {
-                gender = true;
+                if (!string.IsNullOrWhiteSpace(Surname.Text) && !string.IsNullOrWhiteSpace(Name.Text)
+                    && !string.IsNullOrWhiteSpace(Telephone.Text) && !string.IsNullOrWhiteSpace(Email.Text) && Birthday.Date != null
+                    && !string.IsNullOrEmpty(Seria.Text) && !string.IsNullOrWhiteSpace(NumberPas.Text))
+                {
+                    Validate validate = new Validate();
+                    if (validate.ValidateAll(Surname.Text, Name.Text, Patronymic.Text, Telephone.Text, Email.Text, Seria.Text, NumberPas.Text) == true)
+                    {
+                        bool gender;
+                        if (women.IsChecked == true)
+                        {
+                            gender = true;
+                        }
+                        else gender = false;
+                        string telephone = Regex.Replace(Telephone.Text, "[^0-9#]", "");
+                        string sql = $"UPDATE Client SET Surname = '{Surname.Text}', Name = '{Name.Text}', Patronymic = '{Patronymic.Text}', Birthday = '{Birthday.Date.ToString("yyyy-MM-dd")}'," +
+                            $"Gender = {gender}, PhoneNumber = '{telephone}', Email = '{Email.Text}', PassportSeries = {Seria.Text}, PassportNumber = {NumberPas.Text} WHERE (ClientID = {_UserId}) ";
+                        MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                        MySqlDataReader reader = command.ExecuteReader();
+                        reader.Close();
+                        await DisplayAlert("Профиль", "Данные успешно сохранены", "Ok");
+                    }
+                    else await DisplayAlert("Ошибка", $"{validate.message}", "Ok");
+                }
+                else await DisplayAlert("Ошибки", "Заполните все обязательные поля!", "Ok");
             }
-            else gender = false;
-            string telephone = Regex.Replace(Telephone.Text, "[^0-9#]", "");
-            string sql = $"UPDATE Client SET Surname = '{Surname.Text}', Name = '{Name.Text}', Patronymic = '{Patronymic.Text}', Birthday = '{Birthday.Date.ToString("yyyy-MM-dd")}'," +
-                $"Gender = {gender}, PhoneNumber = '{telephone}', Email = '{Email.Text}', PassportSeries = {Seria.Text}, PassportNumber = {NumberPas.Text} WHERE (ClientID = {_UserId}) ";
-            MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            reader.Close();
-            await DisplayAlert("Профиль", "Данные успешно сохранены", "Ok");
-
+            catch
+            {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }
         }
     }
 }

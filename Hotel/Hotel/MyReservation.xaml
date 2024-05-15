@@ -34,9 +34,9 @@
                                         <ViewCell.View>
                                             <StackLayout>
                                                 <Frame CornerRadius="10" Margin="15, 7" Padding="0" BackgroundColor="White" >
-                                                    <StackLayout BackgroundColor="Wheat">
+                                                    <StackLayout BackgroundColor="#EECEAF">
                                                         <Image Source="{Binding Img}"></Image>
-                                                        <StackLayout HorizontalOptions="Center" BackgroundColor="Wheat" Orientation="Horizontal">
+                                                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                                             <Label Text="{Binding CheckInDate}"></Label>
                                                             <Label  Text="—"></Label>
                                                             <Label Text="{Binding CheckOutDate}"></Label>
@@ -67,9 +67,9 @@
                                         <ViewCell.View>
                                             <StackLayout>
                                                 <Frame CornerRadius="10" Margin="15,7" Padding="0" BackgroundColor="White" >
-                                                    <StackLayout BackgroundColor="Wheat">
+                                                    <StackLayout BackgroundColor="#EECEAF">
                                                         <Image Source="{Binding Img}"></Image>
-                                                        <StackLayout HorizontalOptions="Center" BackgroundColor="Wheat" Orientation="Horizontal">
+                                                        <StackLayout HorizontalOptions="Center" Orientation="Horizontal">
                                                             <Label Text="{Binding CheckInDate}"></Label>
                                                             <Label  Text="—"></Label>
                                                             <Label Text="{Binding CheckOutDate}"></Label>

@@ -1,12 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 using Application = Xamarin.Forms.Application;
 using Button = Xamarin.Forms.Button;
@@ -76,12 +71,19 @@ namespace Hotel
 
         private async void SelectTarifBtn_Clicked(object sender, EventArgs e)
         {
-            var btn = (Button)sender;
-            TariffInfo tariff = (TariffInfo)btn.BindingContext;
-            if (tariff != null)
+            try
             {
-                ConfirmReservation confirmReservation = new ConfirmReservation(_checkIn,  _checkOut, _peopleCount, _roomInfo, tariff);
-                await Navigation.PushAsync(confirmReservation);
+                var btn = (Button)sender;
+                TariffInfo tariff = (TariffInfo)btn.BindingContext;
+                if (tariff != null)
+                {
+                    ConfirmReservation confirmReservation = new ConfirmReservation(_checkIn, _checkOut, _peopleCount, _roomInfo, tariff);
+                    await Navigation.PushAsync(confirmReservation);
+                }
+            }
+            catch
+            {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
             }
         }
     }

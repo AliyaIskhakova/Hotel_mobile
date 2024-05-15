@@ -1,10 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -21,12 +16,16 @@ namespace Hotel
             InitializeComponent();
             MyReservInfo.BindingContext = reservationInfo;
             _reservationInfo = reservationInfo;
-            
-            if (type == 0)
+
+            if (type == -1)
             {
-                DeleteReservationBtn.IsVisible = true;
+                DeleteReservationBtn.IsVisible = false;
+                EditReservationBtn.IsVisible = false;
+                checkIn.IsEnabled = false;
+                checkOut.IsEnabled = false;
+                checkIn.TextColor = Color.Black;
+                checkOut.TextColor = Color.Black;     
             }
-            else DeleteReservationBtn.IsVisible = false;
             checkIn.Date = reservationInfo.CheckIn;
             checkOut.Date = reservationInfo.CheckOut;
             checkIn.MinimumDate = reservationInfo.CheckIn;
@@ -81,12 +80,23 @@ namespace Hotel
 
         private async void DeleteReservationBtn_Clicked(object sender, EventArgs e)
         {
-            string sql = $"DELETE FROM reservation WHERE ReservationID = '{_reservationInfo.ReservationID}';";
-            MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
-            MySqlDataReader reader = command.ExecuteReader();
-            reader.Close();
-            await Navigation.PushAsync(new Menu());
-            App.Current.MainPage = new NavigationPage(new Menu());
+            try
+            {
+                bool result = await DisplayAlert("Подтвердить действие", "Вы действительно хотите отменить бронирование?", "Да", "Нет");
+                if (result)
+                {
+                    string sql = $"DELETE FROM reservation WHERE ReservationID = '{_reservationInfo.ReservationID}';";
+                    MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Close();
+                    await Navigation.PushAsync(new Menu());
+                    App.Current.MainPage = new NavigationPage(new Menu());
+                }
+            }
+            catch
+            {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }
         }
 
         private void checkOut_DateSelected(object sender, DateChangedEventArgs e)
@@ -105,17 +115,24 @@ namespace Hotel
 
         private async void EditReservationBtn_Clicked(object sender, EventArgs e)
         {
-            if (checkOut.Date < checkIn.Date)
+            try
             {
-                string sql = $"UPDATE reservation SET CheckiInDate = '{checkIn.Date.ToString("yyyy-MM-dd")}', CheckOutDate = '{checkOut.Date.ToString("yyyy-MM-dd")}', " +
-                    $"FullCost = '{ReservCost.Text}' WHERE(`ReservationID` = '{_reservationInfo.ReservationID}');";
-                MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
-                MySqlDataReader reader = command.ExecuteReader();
-                reader.Close();
-                await Navigation.PushAsync(new Menu());
-                App.Current.MainPage = new NavigationPage(new Menu());
+                if (checkOut.Date > checkIn.Date)
+                {
+                    string sql = $"UPDATE reservation SET CheckiInDate = '{checkIn.Date.ToString("yyyy-MM-dd")}', CheckOutDate = '{checkOut.Date.ToString("yyyy-MM-dd")}', " +
+                        $"FullCost = '{ReservCost.Text}' WHERE(`ReservationID` = '{_reservationInfo.ReservationID}');";
+                    MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Close();
+                    await Navigation.PushAsync(new Menu());
+                    App.Current.MainPage = new NavigationPage(new Menu());
+                }
+                else await DisplayAlert("Изменение дат", "Неверные даты!", "Ok");
             }
-            else await DisplayAlert("Изменение дат", "Неверные даты!", "Ok");
+            catch
+            {
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }
         }
     }
 }

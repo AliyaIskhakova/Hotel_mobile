@@ -11,11 +11,6 @@
             <Setter Property="TextColor" Value="#383837"/>
             <Setter Property="Margin" Value="0, 2"/>
         </Style>
-        <Style TargetType="Label" x:Key="LadelValue">
-            <Setter Property="FontSize" Value="Body"></Setter>
-            <Setter Property="TextColor" Value="#383837"/>
-            <Setter Property="Margin" Value="0, 2"/>
-        </Style>
         <Style TargetType="Frame">
             <Setter Property="Padding" Value="20, 10"/>
         </Style>
@@ -23,7 +18,7 @@
     <StackLayout VerticalOptions="CenterAndExpand">
         <Frame Padding="0" Margin="10" CornerRadius="10">
             <StackLayout>
-                <Frame BackgroundColor="Wheat">
+                <Frame BackgroundColor="#EECEAF">
                     <Label Text="Информация" HorizontalOptions="Center" FontSize="Large" FontAttributes="Bold"/>
                 </Frame>
                 <Frame>
@@ -54,9 +49,9 @@
                     <StackLayout>
                         <Label x:Name="RoomName">Номер</Label>
                         <StackLayout Orientation="Horizontal" >
-                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="Area"></Label>
-                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="RoomQuantity"></Label>
-                            <Label Style="{StaticResource LadelValue}" HorizontalOptions="FillAndExpand" x:Name="PeopleQuantity"></Label>
+                            <Label Style="{StaticResource LadelValue2}" x:Name="Area"></Label>
+                            <Label Style="{StaticResource LadelValue2}" x:Name="RoomQuantity"></Label>
+                            <Label Style="{StaticResource LadelValue2}" x:Name="PeopleQuantity"></Label>
                         </StackLayout>
                     </StackLayout>
                 </Frame>

@@ -1,10 +1,5 @@
 ﻿using MySqlConnector;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -29,27 +24,32 @@ namespace Hotel
         {
             try
             {
-                if (!string.IsNullOrEmpty(Login.Text.Trim()) && !string.IsNullOrEmpty(Password.Text.Trim()))
+                if (!string.IsNullOrWhiteSpace(Login.Text) && !string.IsNullOrWhiteSpace(Password.Text))
                 {
-                    string sql = $"SELECT ClientID FROM Client WHERE Login='{Login.Text}' and Password='{Password.Text}'";
+                    string sql = $"SELECT ClientID, Password FROM Client WHERE Login='{Login.Text}'";
                     MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
                     MySqlDataReader reader = command.ExecuteReader();
                     if (reader.Read())
                     {
                         int userId = (int)reader[0];
-                        Preferences.Set("UserId", userId);
-                        Preferences.Set("IsLoggedIn", true);
-                        await Navigation.PushAsync(new Menu());
-                        App.Current.MainPage = new NavigationPage(new Menu());
+                        string password = (string)reader[1];
+                        if (password == Password.Text)
+                        {
+                            Preferences.Set("UserId", userId);
+                            Preferences.Set("IsLoggedIn", true);
+                            await Navigation.PushAsync(new Menu());
+                            App.Current.MainPage = new NavigationPage(new Menu());
+                        }
+                        else await DisplayAlert("Ошибка", "Неверный пароль", "OK");
                     }
-                    else await DisplayAlert("Ошибка", "Неверный логин или пароль", "OK");
+                    else await DisplayAlert("Ошибка", "Неверный логин", "OK");
                     reader.Close();
                 }
                 else await DisplayAlert("Ошибка", "Введите данные для входа!", "OK");
             }
             catch 
             {
-                await DisplayAlert("Ошибка", "Проверьте данные для входа", "OK");
+                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
             }
         }
 

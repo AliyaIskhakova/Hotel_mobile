@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
-
   <style name="MainTheme" parent="MainTheme.Base">
     <item name="colorPrimary">#ffffff</item>
     <item name="colorPrimaryDark">#210E0D</item>
@@ -8,7 +7,6 @@
   <item name="android:colorActivatedHighlight" >#EECFAF</item >
 	  <item name="android:datePickerDialogTheme">@style/CustomDatePickerDialog</item>
  <item name="android:windowBackground">@drawable/intro</item>
-
   </style>
 	<style name="CustomDatePickerDialog" parent="ThemeOverlay.AppCompat.Dialog">
 		<item name="colorAccent">#907B7A</item>
