@@ -30,7 +30,7 @@
                             <RadioButton GroupName="Gender" x:Name="men" Content="М" Value="0"></RadioButton>
                         </StackLayout>
                         <Label>Телефон</Label>
-                        <control:MaskedEntry x:Name="Telephone" Keyboard="Telephone" Mask="7 (XXX)-XXX-XX-XX"></control:MaskedEntry>
+                        <control:MaskedEntry x:Name="Telephone" Keyboard="Numeric" Mask="7(XXX)-XXX-XX-XX"></control:MaskedEntry>
                         <Label>Почта</Label>
                         <Entry x:Name="Email" Keyboard="Email" ></Entry>
                         <Label>Паспорт</Label>

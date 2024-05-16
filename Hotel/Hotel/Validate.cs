@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Xamarin.Forms;
 
 namespace Hotel
 {
@@ -92,8 +93,11 @@ namespace Hotel
         }
         public int ValidateTelephone(string telephone)
         {
-            string numbersOnly = Regex.Replace(telephone, "[^0-9#]", "");
-            if (numbersOnly.Length != 11)
+            if (telephone.Contains(" ") || telephone.Contains(","))
+            {
+                return 0;
+            }
+            else if (telephone.Length != 16)
             {
                 return 0;
             }

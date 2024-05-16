@@ -65,24 +65,35 @@ namespace Hotel
                     && !string.IsNullOrWhiteSpace(Telephone.Text) && !string.IsNullOrWhiteSpace(Email.Text) && Birthday.Date != null
                     && !string.IsNullOrEmpty(Seria.Text) && !string.IsNullOrWhiteSpace(NumberPas.Text))
                 {
-                    Validate validate = new Validate();
-                    if (validate.ValidateAll(Surname.Text, Name.Text, Patronymic.Text, Telephone.Text, Email.Text, Seria.Text, NumberPas.Text) == true)
+                    string ptr;
+                    if (string.IsNullOrWhiteSpace(Patronymic.Text))
                     {
-                        bool gender;
-                        if (women.IsChecked == true)
-                        {
-                            gender = true;
-                        }
-                        else gender = false;
-                        string telephone = Regex.Replace(Telephone.Text, "[^0-9#]", "");
-                        string sql = $"UPDATE Client SET Surname = '{Surname.Text}', Name = '{Name.Text}', Patronymic = '{Patronymic.Text}', Birthday = '{Birthday.Date.ToString("yyyy-MM-dd")}'," +
-                            $"Gender = {gender}, PhoneNumber = '{telephone}', Email = '{Email.Text}', PassportSeries = {Seria.Text}, PassportNumber = {NumberPas.Text} WHERE (ClientID = {_UserId}) ";
-                        MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
-                        MySqlDataReader reader = command.ExecuteReader();
-                        reader.Close();
-                        await DisplayAlert("Профиль", "Данные успешно сохранены", "Ok");
+                        ptr = "";
                     }
-                    else await DisplayAlert("Ошибка", $"{validate.message}", "Ok");
+                    else ptr = Patronymic.Text;
+                    string telephone = Regex.Replace(Telephone.Text, "[^0-9#]", "");
+                    if (telephone.Length == 11)
+                    {
+                        Validate validate = new Validate();
+                        if (validate.ValidateAll(Surname.Text, Name.Text, ptr, Telephone.Text, Email.Text, Seria.Text, NumberPas.Text) == true)
+                        {
+                            bool gender;
+                            if (women.IsChecked == true)
+                            {
+                                gender = true;
+                            }
+                            else gender = false;
+                            telephone = Regex.Replace(Telephone.Text, "[^0-9#]", "");
+                            string sql = $"UPDATE Client SET Surname = '{Surname.Text}', Name = '{Name.Text}', Patronymic = '{Patronymic.Text}', Birthday = '{Birthday.Date.ToString("yyyy-MM-dd")}'," +
+                                $"Gender = {gender}, PhoneNumber = '{telephone}', Email = '{Email.Text}', PassportSeries = {Seria.Text}, PassportNumber = {NumberPas.Text} WHERE (ClientID = {_UserId}) ";
+                            MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
+                            MySqlDataReader reader = command.ExecuteReader();
+                            reader.Close();
+                            await DisplayAlert("Профиль", "Данные успешно сохранены", "Ok");
+                        }
+                        else await DisplayAlert("Ошибка", $"{validate.message}", "Ok");
+                    }
+                    else await DisplayAlert("Ошибка", "Неверный формат номера телефона!!", "Ok");
                 }
                 else await DisplayAlert("Ошибки", "Заполните все обязательные поля!", "Ok");
             }

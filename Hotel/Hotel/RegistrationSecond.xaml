@@ -43,7 +43,7 @@
 
             <Label Style="{StaticResource LabelMedium}">Телефон*</Label>
             <Frame>
-                <control:MaskedEntry x:Name="Telephone" Keyboard="Telephone" Mask="7 (XXX)-XXX-XX-XX"></control:MaskedEntry>
+                <control:MaskedEntry x:Name="Telephone" Keyboard="Numeric" Mask="7(XXX)-XXX-XX-XX"></control:MaskedEntry>
             </Frame>
             <Label Style="{StaticResource LabelMedium}">Дата рождения*</Label>
             <Frame>

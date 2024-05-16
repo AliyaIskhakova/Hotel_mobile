@@ -22,14 +22,19 @@ namespace Hotel
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-           try
-           {
-                if (_login != null && _password != null && !string.IsNullOrWhiteSpace(Surname.Text) && !string.IsNullOrWhiteSpace(Name.Text)
-                && !string.IsNullOrWhiteSpace(Telephone.Text) && !string.IsNullOrWhiteSpace(Email.Text) && Birthday.Date != null
-                && !string.IsNullOrEmpty(Seria.Text) && !string.IsNullOrWhiteSpace(NumberPas.Text))
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(Surname.Text) && !string.IsNullOrWhiteSpace(Name.Text)
+                && !string.IsNullOrWhiteSpace(Telephone.Text) && !string.IsNullOrWhiteSpace(Email.Text) && !string.IsNullOrEmpty(Seria.Text) && !string.IsNullOrWhiteSpace(NumberPas.Text))
                 {
-                    Validate validate = new Validate();
-                    if(validate.ValidateAll(Surname.Text, Name.Text, Patronymic.Text, Telephone.Text, Email.Text, Seria.Text, NumberPas.Text) == true)
+                    string ptr;
+                    if (string.IsNullOrWhiteSpace(Patronymic.Text))
+                    {
+                        ptr = "";
+                    }
+                    else ptr = Patronymic.Text;
+                    Validate validate = new Validate(); 
+                    if(validate.ValidateAll(Surname.Text, Name.Text, ptr, Telephone.Text, Email.Text, Seria.Text, NumberPas.Text) == true)
                     {
                         int gender = 0;
                         if (women.IsChecked == true)
@@ -37,30 +42,30 @@ namespace Hotel
                             gender = 1;
                         }
                         string numbersOnly = Regex.Replace(Telephone.Text, "[^0-9#]", "");
-                            try
-                            {
-                                string sql = $"INSERT Client (Surname, Name, Patronymic, Birthday, Gender, PhoneNumber, PassportSeries, PassportNumber, Email, Login, Password )" +
+                    try
+                    {
+                        string sql = $"INSERT Client (Surname, Name, Patronymic, Birthday, Gender, PhoneNumber, PassportSeries, PassportNumber, Email, Login, Password )" +
                                 $" VALUES('{Surname.Text}', '{Name.Text}', '{Patronymic.Text}', '{Birthday.Date.ToString("yyyy-MM-dd")}', '{gender}', '{numbersOnly}', {Seria.Text} , {NumberPas.Text} , '{Email.Text}', '{_login}', '{_password}');";
                                 MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
                                 MySqlDataReader reader = command.ExecuteReader();
                                 await Navigation.PopToRootAsync();
                                 reader.Close();
-                            }
-                            catch
-                            {
-                                await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте снова!", "Ok");
-                            }
+                    }
+                    catch
+                    {
+                        await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте снова!", "Ok");
+                    }
 
-                    } 
+                } 
                     else await DisplayAlert("Ошибка", $"{validate.message}", "Ok");
 
                 }
                 else await DisplayAlert("Ошибки", "Заполните все обязательные поля!", "Ok");
-           }
+       }
            catch {
               await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте снова!", "Ok");
-           }
-        }
+    }
+}
 
     }
 }

@@ -40,9 +40,9 @@ namespace Hotel
                             await Navigation.PushAsync(new Menu());
                             App.Current.MainPage = new NavigationPage(new Menu());
                         }
-                        else await DisplayAlert("Ошибка", "Неверный пароль", "OK");
+                        else await DisplayAlert("Ошибка", "Неверный логин или пароль", "OK");
                     }
-                    else await DisplayAlert("Ошибка", "Неверный логин", "OK");
+                    else await DisplayAlert("Ошибка", "Неверный логин или пароль", "OK");
                     reader.Close();
                 }
                 else await DisplayAlert("Ошибка", "Введите данные для входа!", "OK");

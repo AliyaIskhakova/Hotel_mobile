@@ -36,7 +36,7 @@ namespace Hotel
                         Random rnd = new Random();
                         newCode = rnd.Next(1000, 9999);
                         m.Subject = "Восстановление пароля";               
-                        m.Body = "<h1>Код для восстановлеия пароля: " + newCode + "</h1>";
+                        m.Body = "<h1>Код для восстановления пароля: " + newCode + "</h1>";
                         m.IsBodyHtml = true;
                         SmtpClient smtp = new SmtpClient("smtp.mail.ru", 587);
                         smtp.Credentials = new NetworkCredential("aliya_iskhakova12@mail.ru", "9GUmsMKvG87QcwdJgdMB");
