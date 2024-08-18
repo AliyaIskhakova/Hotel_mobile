@@ -146,5 +146,11 @@ namespace Hotel
                 await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
             }
         }
+
+        private void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            GenerateActual();
+            GenerateLast();
+        }
     }
 }

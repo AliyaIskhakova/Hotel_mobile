@@ -26,7 +26,7 @@ namespace Hotel
         public async void GenerateRooms(DateTime checkIn, DateTime checkOut, int peopleCount)
         {          
             List<RoomInfo> Rooms = new List<RoomInfo>();
-            string sql = $"SELECT * FROM Room r WHERE r.PeopleQuantity >= {peopleCount} AND NOT EXISTS " +
+            string sql = $"SELECT * FROM Room r WHERE r.PeopleQuantity = {peopleCount} AND NOT EXISTS " +
                 $"(SELECT 1 FROM Reservation b WHERE b.RoomID = r.RoomID AND '{checkIn.ToString("yyyy-MM-dd")}' <= b.CheckOutDate " +
                 $"AND '{checkOut.ToString("yyyy-MM-dd")}' >= b.CheckiInDate)";
             MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);

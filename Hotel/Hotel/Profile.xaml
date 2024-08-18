@@ -11,7 +11,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Scrolled="ScrollView_Scrolled">
             <StackLayout>
                 <Label  Style="{StaticResource TitleLabel}" Margin="10" >Личный кабинет</Label>
                 <Frame CornerRadius="20" Margin="20, 0">

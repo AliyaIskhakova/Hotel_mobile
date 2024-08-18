@@ -19,6 +19,10 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
+
+            <StackLayout.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Down" Swiped="SwipeGestureRecognizer_Swiped" />
+            </StackLayout.GestureRecognizers>
             <Label Style="{StaticResource TitleLabel}" Text="Мои бронирования"/>
             <StackLayout VerticalOptions="Start"  Orientation="Horizontal">
                 <Button x:Name="ActualReservBtn" Style="{StaticResource BtnType3}" BackgroundColor="#907B7A" Clicked="ActualReservBtn_Clicked" Text="Актуальные"></Button>
@@ -26,6 +30,7 @@
             </StackLayout>
             <ScrollView>
                 <StackLayout>
+                    
                     <StackLayout x:Name="actualReserv">
                         <ListView x:Name="actualReservList" HasUnevenRows="True" ItemTapped="actualReservList_ItemTapped" >
                             <ListView.ItemTemplate>

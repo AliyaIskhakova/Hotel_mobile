@@ -6,7 +6,7 @@ namespace Hotel
 {
     public partial class App : Application
     {
-        public MySqlConnection connection = new MySqlConnection(@"Server=192.168.1.154;Port=3306;Uid=aliya;Pwd=password;Database=hotel;");
+        public MySqlConnection connection = new MySqlConnection(@"Server=192.168.74.234;Port=3306;Uid=aliya;Pwd=12345;Database=hotel;");
         public MySqlCommand command;
         public MySqlDataReader datareader;
         public App()

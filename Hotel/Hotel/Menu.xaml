@@ -9,7 +9,7 @@
             BackgroundColor="White"
             android:TabbedPage.BarItemColor="#907B7A"
             android:TabbedPage.BarSelectedItemColor="Black">
-            
+
     <NavigationPage IconImageSource="myReservation.png">
         <x:Arguments>
             <local:MyReservation/>

@@ -19,6 +19,11 @@ namespace Hotel
             ((App)Application.Current).connection.Open();
             Birthday.MaximumDate = DateTime.Now.AddYears(-14);
             Birthday.MinimumDate = DateTime.Today.AddYears(-100);
+            ProfileInfoGenerate();
+
+        }
+        public void ProfileInfoGenerate()
+        {
             string sql = $"SELECT * FROM Client WHERE ClientID = {_UserId} ";
             MySqlCommand command = new MySqlCommand(sql, ((App)Application.Current).connection);
             MySqlDataReader reader = command.ExecuteReader();
@@ -28,23 +33,24 @@ namespace Hotel
                 Name.Text = (string)reader[2];
                 Patronymic.Text = (string)reader[3];
                 Birthday.Date = (DateTime)reader[4];
-                if ((bool)reader[5]==true)
+                if ((bool)reader[5] == true)
                 {
                     women.IsChecked = true;
                 }
                 else men.IsChecked = true;
                 Telephone.Text = (string)reader[6];
                 Email.Text = (string)reader[7];
-                try {
+                try
+                {
                     Seria.Text = ((int)reader[8]).ToString();
                     NumberPas.Text = ((int)reader[9]).ToString();
                 }
-                catch { 
-                
+                catch
+                {
+
                 }
             }
             reader.Close();
-
         }
 
         private async void ExitBtn_Clicked(object sender, EventArgs e)
@@ -100,6 +106,14 @@ namespace Hotel
             catch
             {
                 await DisplayAlert("Ошибка", "Что-то пошло не так, попробуйте еще раз", "OK");
+            }
+        }
+
+        private async void ScrollView_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            if (e.ScrollY <= 0)
+            {
+                ProfileInfoGenerate();
             }
         }
     }
